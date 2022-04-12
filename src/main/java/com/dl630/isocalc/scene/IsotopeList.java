@@ -1,22 +1,20 @@
 package com.dl630.isocalc.scene;
 
+import com.dl630.isocalc.Main;
 import com.dl630.isocalc.element.Element;
 import com.dl630.isocalc.element.ElementHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public class IsotopeList implements SceneInterface {
-    private Element element;
-    private ArrayList<Integer> isotopes;
+    private final Element element;
+    private final ArrayList<Integer> isotopes;
 
     public IsotopeList(Element element) {
         this.element = element;
@@ -44,7 +42,31 @@ public class IsotopeList implements SceneInterface {
             anchorPane.getChildren().addAll(label, button);
             content.getChildren().add(anchorPane);
         });
+        Button returnButton = new Button("Return");
+        returnButton.setOnAction(e -> {
+            Main.setScene("PeriodicPicker");
+        });
+
+        GridPane bottomPane = new GridPane();
+        bottomPane.add(addButton, 0, 0);
+        bottomPane.add(returnButton, 1, 0);
+
         for (int i = 0; i < isotopes.size(); i++) {
+            // Test if any of the isotopes have already been selected, if so skip adding the button for that isotope
+            boolean skip = false;
+            if (ElementHandler.getSelectedIsotopes() != null) {
+                if (ElementHandler.getSelectedIsotopes().containsKey(element)) {
+                    for (int j = 0; j < ElementHandler.getSelectedIsotopes().get(element).size(); j++) {
+                        if (ElementHandler.getSelectedIsotopes().get(element).get(j).equals(isotopes.get(i))) {
+                            skip = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (skip) continue;
+
+
             AnchorPane anchorPane = new AnchorPane();
             Label label = new Label(element.getName() + "-" + isotopes.get(i));
             AnchorPane.setLeftAnchor(label, 5.0);
@@ -70,6 +92,6 @@ public class IsotopeList implements SceneInterface {
             anchorPane.getChildren().addAll(label, button);
             content.getChildren().add(anchorPane);
         }
-        return new Scene(new BorderPane(scrollPane, null, null, addButton, null), 400, 400);
+        return new Scene(new BorderPane(scrollPane, null, null, bottomPane, null), 400, 400);
     }
 }
