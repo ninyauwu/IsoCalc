@@ -1,6 +1,7 @@
 package com.dl630.isocalc;
 
-import com.dl630.isocalc.scene.PeriodicPicker;
+import com.dl630.isocalc.element.Element;
+import com.dl630.isocalc.element.ElementHandler;
 import com.dl630.isocalc.scene.SceneFactory;
 import com.dl630.isocalc.scene.SceneInterface;
 import javafx.application.Application;
@@ -9,6 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Main extends Application {
@@ -38,6 +43,21 @@ public class Main extends Application {
         stage.setScene(scene);
 
         setScene("PeriodicPicker");
+
+//        String script = "C:\\Users\\alexb\\Desktop\\VBSTEST\\run_notepad.vbs";
+//        // search for real path:
+//        String executable = "C:\\Windows\\System32\\wscript.exe";
+//        String cmdArr [] = {executable, script};
+//        try {
+//            Runtime.getRuntime().exec(cmdArr);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        Map<Element, ArrayList<Integer>> map = new HashMap<>();
+        ArrayList<Integer> isotopes = new ArrayList<>();
+        isotopes.add(235);
+        map.put(ElementHandler.getElementByName("U"), isotopes);
+        BeractAdapter.calculateResult(map);
     }
 
     public static void main(String[] args) {
@@ -53,5 +73,4 @@ public class Main extends Application {
         currentStage.setScene(scene.initScene(currentStage));
         currentStage.show();
     }
-
 }
