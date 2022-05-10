@@ -29,16 +29,10 @@ public class PeriodicPicker implements SceneInterface {
 
         int spacing = 0;
         for (int i = 0; i < elements.length; i++) {
-            switch(spacing) {
-                case 1:
-                    spacing += 16;
-                    break;
-                case 20:
-                    spacing += 10;
-                    break;
-                case 38:
-                    spacing += 10;
-                    break;
+            switch (spacing) {
+                case 1 -> spacing += 16;
+                case 20 -> spacing += 10;
+                case 38 -> spacing += 10;
             }
             if (i == 56 || i == 103) {
                 spacing -= 14;
@@ -57,8 +51,8 @@ public class PeriodicPicker implements SceneInterface {
                 button.setLayoutY(48 + (8 * 56));
             } else {
                 button.setPrefSize(50, 50);
-                button.setLayoutX(56 * spacing + 20 - ((spacing / 18.0F) * 56 * 18));
-                button.setLayoutY(20 + (spacing / 18.0F) * 56);
+                button.setLayoutX(56 * spacing + 20 - ((spacing / 18) * 56 * 18));
+                button.setLayoutY(20 + (spacing / 18) * 56);
             }
 
             if (isotopeMap.containsKey(element)) {
