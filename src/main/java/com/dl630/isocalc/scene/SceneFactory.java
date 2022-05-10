@@ -2,17 +2,19 @@ package com.dl630.isocalc.scene;
 
 import com.dl630.isocalc.AbstractFactory;
 import com.dl630.isocalc.element.ElementHandler;
-import javafx.scene.Scene;
 
 public class SceneFactory implements AbstractFactory<SceneInterface> {
     @Override
     public SceneInterface create(String sceneType) {
-        if (sceneType.equals("PeriodicPicker")) {
-            return new PeriodicPicker();
-        } else if (sceneType.equals("IsotopeList")) {
-            return new IsotopeList(ElementHandler.getElementByName("H"));
+        switch (sceneType) {
+            case "PeriodicPicker":
+                return new PeriodicPicker();
+            case "IsotopeList":
+                return new ElementIsotopeList(ElementHandler.getElementByName("H"));
+            case "MaterialMakeup":
+                return new MaterialMakeup();
+            default:
+                return null;
         }
-
-        return null;
     }
 }

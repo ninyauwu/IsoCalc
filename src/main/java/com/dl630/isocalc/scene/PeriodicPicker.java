@@ -4,6 +4,7 @@ import com.dl630.isocalc.element.Element;
 import com.dl630.isocalc.Main;
 import com.dl630.isocalc.element.ElementHandler;
 import com.dl630.isocalc.guielement.PeriodicButton;
+import com.dl630.isocalc.scene.transition.ZoomAndFadeTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -15,9 +16,13 @@ import java.util.Map;
 public class PeriodicPicker implements SceneInterface {
     @Override
     public Scene initScene(Stage root) {
+        return new Scene(initSceneUnwrapped(root));
+    }
+
+    @Override
+    public Pane initSceneUnwrapped(Stage root) {
         Pane pane = new Pane();
-        Scene scene = new Scene(pane);
-        scene.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button.css").toExternalForm());
+        pane.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button.css").toExternalForm());
 
         Element[] elements = ElementHandler.getAllElements();
         Map<Element, ArrayList<Integer>> isotopeMap = ElementHandler.getAllIsotopes();
@@ -52,8 +57,8 @@ public class PeriodicPicker implements SceneInterface {
                 button.setLayoutY(48 + (8 * 56));
             } else {
                 button.setPrefSize(50, 50);
-                button.setLayoutX(56 * spacing + 20 - ((spacing / 18) * 56 * 18));
-                button.setLayoutY(20 + (spacing / 18) * 56);
+                button.setLayoutX(56 * spacing + 20 - ((spacing / 18.0F) * 56 * 18));
+                button.setLayoutY(20 + (spacing / 18.0F) * 56);
             }
 
             if (isotopeMap.containsKey(element)) {
@@ -64,49 +69,23 @@ public class PeriodicPicker implements SceneInterface {
             }
 
             button.setOnAction(e -> {
-                IsotopeList isotopeList = new IsotopeList(element);
-                root.setScene(isotopeList.initScene(root));
+                ElementIsotopeList isotopeList = new ElementIsotopeList(element);
+                ZoomAndFadeTransition zoomAndFadeTransition = new ZoomAndFadeTransition(this, isotopeList, ZoomAndFadeTransition.ZoomDirection.IN);
+                Main.setScene(zoomAndFadeTransition);
             });
 
             pane.getChildren().add(button);
             spacing++;
         }
-        return scene;
+        return pane;
     }
 
     private void setElementStyle(Button button, Element.ElementType type) {
         // This can be replaced with type.toString()
-        switch (type) {
-            case ALKALI:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_alkali.css").toExternalForm());
-                break;
-            case ALKALINE_EARTH:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_alkaline_earth.css").toExternalForm());
-                break;
-            case TRANSITION_METAL:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_transition_metal.css").toExternalForm());
-                break;
-            case BASIC_METAL:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_basic_metal.css").toExternalForm());
-                break;
-            case METALLOID:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_metalloid.css").toExternalForm());
-                break;
-            case NONMETAL:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_nonmetal.css").toExternalForm());
-                break;
-            case HALOGEN:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_halogen.css").toExternalForm());
-                break;
-            case NOBLE_GAS:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_noble_gas.css").toExternalForm());
-                break;
-            case LANTHANIDE:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_lanthanide.css").toExternalForm());
-                break;
-            case ACTINIDE:
-                button.getStylesheets().add(this.getClass().getResource(Main.RESOURCE_ROOT + "style/elementbuttons/element_button_actinide.css").toExternalForm());
-                break;
-        }
+        String styleSheet = Main.RESOURCE_ROOT +
+                "style/elementbuttons/element_button_" +
+                type.toString().toLowerCase() +
+                ".css";
+        button.getStylesheets().add(this.getClass().getResource(styleSheet).toExternalForm());
     }
 }

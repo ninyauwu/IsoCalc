@@ -1,20 +1,15 @@
 package com.dl630.isocalc;
 
-import com.dl630.isocalc.element.Element;
-import com.dl630.isocalc.element.ElementHandler;
 import com.dl630.isocalc.scene.SceneFactory;
 import com.dl630.isocalc.scene.SceneInterface;
+import com.dl630.isocalc.scene.transition.HorizontalSwipeTransition;
+import com.dl630.isocalc.scene.transition.ZoomAndFadeTransition;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class Main extends Application {
     public static final String RESOURCE_ROOT = "/com/dl630/isocalc/";
@@ -42,22 +37,16 @@ public class Main extends Application {
         stage.setMinHeight(200);
         stage.setScene(scene);
 
-        setScene("PeriodicPicker");
+        SceneFactory factory = new SceneFactory();
+        ZoomAndFadeTransition swipeTransition = new ZoomAndFadeTransition(factory.create("IsotopeList"), factory.create("PeriodicPicker"), ZoomAndFadeTransition.ZoomDirection.IN);
 
-//        String script = "C:\\Users\\alexb\\Desktop\\VBSTEST\\run_notepad.vbs";
-//        // search for real path:
-//        String executable = "C:\\Windows\\System32\\wscript.exe";
-//        String cmdArr [] = {executable, script};
-//        try {
-//            Runtime.getRuntime().exec(cmdArr);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        Map<Element, ArrayList<Integer>> map = new HashMap<>();
-        ArrayList<Integer> isotopes = new ArrayList<>();
-        isotopes.add(235);
-        map.put(ElementHandler.getElementByName("U"), isotopes);
-        BeractAdapter.calculateResult(map);
+        setScene(swipeTransition);
+
+//        Map<Element, ArrayList<Integer>> map = new HashMap<>();
+//        ArrayList<Integer> isotopes = new ArrayList<>();
+//        isotopes.add(235);
+//        map.put(ElementHandler.getElementByName("U"), isotopes);
+        //BeractAdapter.calculateResult(map);
     }
 
     public static void main(String[] args) {
