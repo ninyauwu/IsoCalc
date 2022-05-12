@@ -1,6 +1,8 @@
 package com.dl630.isocalc.guielement;
 
 import com.dl630.isocalc.Main;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -40,11 +42,13 @@ public class ButtonFactory {
         return returnButton;
     }
     public static Button createContinueButton() { return createContinueButton(""); }
-    public static Button createContinueButton(String title) {
+    public static Button createContinueButton(String title) { return createContinueButton(title, e -> {}); }
+    public static Button createContinueButton(String title, EventHandler<ActionEvent> event) {
         Button continueButton = createImageButton(title, "img/arrow_right_small.png");
         continueButton.setAlignment(Pos.CENTER_RIGHT);
         continueButton.setContentDisplay(ContentDisplay.RIGHT);
         continueButton.setGraphicTextGap(18);
+        continueButton.setOnAction(event);
         return continueButton;
     }
 }
