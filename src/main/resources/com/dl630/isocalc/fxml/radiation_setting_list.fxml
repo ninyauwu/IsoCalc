@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="root">
+    <BorderPane fx:id="borderPane" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+        <top>
+            <fx:include source="component/top_button_pane.fxml" fx:id="topButtonPane"/>
+        </top>
+        <center>
+            <HBox fx:id="contentHBox" alignment="TOP_CENTER">
+                <VBox fx:id="contentVBox" alignment="TOP_CENTER" spacing="12.0">
+                    <Button fx:id="addButton" stylesheets="@../style/colored_button.css">
+                        <graphic>
+                            <ImageView fitWidth="36" fitHeight="36">
+                                <Image url="@../img/borrowed/plus-small_white.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </VBox>
+            </HBox>
+        </center>
+    </BorderPane>
+</AnchorPane>

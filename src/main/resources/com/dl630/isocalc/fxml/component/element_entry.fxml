@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Rectangle?>
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="root"
+            styleClass="entry-pane">
+    <stylesheets>
+        <URL value="@../../style/element_entry.css"/>
+    </stylesheets>
+    <HBox fx:id="leftBox" spacing="12" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+        <Rectangle fx:id="greyRectangle" fill="#cccccc"/>
+    </HBox>
+    <HBox fx:id="rightBox" spacing="12" AnchorPane.rightAnchor="0.0">
+
+    </HBox>
+</AnchorPane>

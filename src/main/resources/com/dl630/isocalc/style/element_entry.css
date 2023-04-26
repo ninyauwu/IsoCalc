@@ -1,0 +1,12 @@
+.entry-pane {
+    -fx-spacing: 0px;
+    -fx-padding: 0 0 0 0;
+
+    -fx-background-radius: 0;
+    -fx-effect: none;
+}
+
+.entry-field {
+    -fx-spacing: 6px;
+    -fx-alignment: center;
+}

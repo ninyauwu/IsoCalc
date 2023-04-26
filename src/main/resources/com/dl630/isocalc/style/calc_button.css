@@ -1,0 +1,25 @@
+.button {
+    -fx-background-radius: 36px;
+    -fx-padding: 6 36 6 36;
+    -fx-font-size: 24px;
+
+    -fx-background-color: #66CEFF;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-radius: 36px;
+    -fx-padding: 6 36 6 36;
+    -fx-font-size: 24px;
+
+    -fx-background-color: #7FE9FF;
+}
+
+.button:pressed {
+    -fx-background-color: #599EFF;
+
+    -fx-background-radius: 36px;
+    -fx-padding: 6 36 6 36;
+    -fx-font-size: 24px;
+}

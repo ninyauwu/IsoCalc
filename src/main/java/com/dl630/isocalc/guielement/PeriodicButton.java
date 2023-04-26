@@ -1,7 +1,10 @@
 package com.dl630.isocalc.guielement;
 
+import com.dl630.isocalc.Main;
+import com.dl630.isocalc.element.Element;
 import com.sun.javafx.scene.control.LabeledText;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.scene.AccessibleRole;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -18,10 +21,17 @@ import javafx.scene.text.TextAlignment;
 import java.util.ArrayList;
 
 public class PeriodicButton extends Button {
-    public PeriodicButton() { this(1, "ERR", "ERROR"); }
+    private Text protonText;
+
+    public PeriodicButton() { this(1, "ERR", "ERROR", null); }
     public PeriodicButton(int protonCount, String element, String elementFullName) {
-        super(element);
-        Text protonText = new Text(String.valueOf(protonCount));
+        this(protonCount, element, elementFullName, null);
+    }
+    public PeriodicButton(Integer protonCount, String element, String elementFullName, Integer isotope) {
+        super(isotope == null ? element : element + "-" + isotope);
+        if (isotope != null) this.setFont(new Font(10));
+        this.setPadding(new Insets(0));
+        protonText = new Text(protonCount == null ? "" : String.valueOf(protonCount));
         protonText.setId("protonText");
         protonText.setLayoutX(4);
         protonText.setLayoutY(14);
@@ -45,6 +55,33 @@ public class PeriodicButton extends Button {
     @Override
     public ButtonSkin createDefaultSkin() {
         return new PeriodicButtonSkin(this);
+    }
+
+    @Override
+    public final void setWidth(double value) {
+        super.setWidth(value);
+        super.setHeight(value);
+        protonText.setFont(new Font(value * 0.2));
+    }
+
+    @Override
+    protected final void setHeight(double value) {
+        super.setHeight(value);
+        super.setWidth(value);
+        protonText.setFont(new Font(value * 0.2));
+    }
+
+    public void setElementStyle(Element.ElementType type) {
+        String styleSheet;
+        if (type == null) {
+            styleSheet = Main.RESOURCE_ROOT + "style/elementbuttons/element_button_undefined.css";
+        } else {
+            styleSheet = Main.RESOURCE_ROOT +
+                    "style/elementbuttons/element_button_" +
+                    type.toString().toLowerCase() +
+                    ".css";
+        }
+        this.getStylesheets().add(this.getClass().getResource(styleSheet).toExternalForm());
     }
 }
 

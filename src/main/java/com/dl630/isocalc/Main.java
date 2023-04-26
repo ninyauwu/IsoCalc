@@ -1,9 +1,8 @@
 package com.dl630.isocalc;
 
-import com.dl630.isocalc.scene.SceneFactory;
-import com.dl630.isocalc.scene.SceneInterface;
-import com.dl630.isocalc.scene.transition.HorizontalSwipeTransition;
-import com.dl630.isocalc.scene.transition.ZoomAndFadeTransition;
+import com.dl630.isocalc.controller.MaterialMakeupListController;
+import com.dl630.isocalc.scene.SceneController;
+import com.dl630.isocalc.core.storage.DataMemory;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -29,6 +28,10 @@ public class Main extends Application {
         Scene scene = new Scene(root, backgroundColor);
         Image icon = new Image("com/dl630/isocalc/img/icon.png");
 
+        DataMemory.loadSavedRadiationSettingMap();
+        DataMemory.loadSavedPaths();
+        DataMemory.loadSavedMasses();
+
         stage.getIcons().add(icon);
         stage.setTitle("IsoCalc version " + VERSION);
         stage.setWidth(DEFAULT_WIDTH);
@@ -37,10 +40,14 @@ public class Main extends Application {
         stage.setMinHeight(200);
         stage.setScene(scene);
 
-        SceneFactory factory = new SceneFactory();
-        ZoomAndFadeTransition swipeTransition = new ZoomAndFadeTransition(factory.create("IsotopeList"), factory.create("PeriodicPicker"), ZoomAndFadeTransition.ZoomDirection.IN);
-
-        setScene(swipeTransition);
+//        setScene(swipeTransition);
+//        PeriodicPickerController periodicPicker = new PeriodicPickerController("periodic_picker.fxml", false, element -> {
+//            setScene(new ElementIsotopeListController(element, ElementHandler.getAllIsotopes().get(element)));
+//        });
+//        setScene(periodicPicker);
+        MaterialMakeupListController materialMakeupListController = new MaterialMakeupListController();
+        setScene(materialMakeupListController);
+        currentStage.show();
 
 //        Map<Element, ArrayList<Integer>> map = new HashMap<>();
 //        ArrayList<Integer> isotopes = new ArrayList<>();
@@ -53,13 +60,11 @@ public class Main extends Application {
         launch(args);
     }
 
-    public static void setScene(String sceneType) {
-        SceneFactory factory = new SceneFactory();
-        SceneInterface scene = factory.create(sceneType);
-        setScene(scene);
-    }
-    public static void setScene(SceneInterface scene) {
-        currentStage.setScene(scene.initScene(currentStage));
-        currentStage.show();
+    public static void setScene(SceneController controller) {
+        try {
+            currentStage.setScene(controller.getScene());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

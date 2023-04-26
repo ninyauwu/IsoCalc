@@ -1,0 +1,17 @@
+.title {
+    -fx-font-size: 16px;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 16;
+    -fx-margin: 0 0 24 0;
+    -fx-alignment: center;
+}
+
+.content-box {
+    -fx-font-size: 14px;
+    -fx-padding: 24 48 24 48;
+}
+
+.field-label {
+    -fx-font-size: 14px;
+    -fx-padding: 0 24 0 0;
+}

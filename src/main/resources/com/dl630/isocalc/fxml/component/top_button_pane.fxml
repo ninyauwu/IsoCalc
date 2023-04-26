@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="root"
+            fx:controller="com.dl630.isocalc.controller.component.TopButtonPaneController">
+    <HBox>
+        <Label/>
+    </HBox>
+    <HBox minHeight="64" alignment="CENTER">
+        <stylesheets>
+            <URL value="@../../style/change_menu_button.css"/>
+        </stylesheets>
+        <Button fx:id="returnButton"
+                graphicTextGap="18"
+                visible="false">
+            <graphic>
+                <ImageView fitHeight="32" preserveRatio="true" fx:id="returnButtonView">
+                    <Image url="@../../img/arrow_left_small.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+    <HBox minHeight="64" alignment="CENTER" AnchorPane.rightAnchor="0.0">
+        <stylesheets>
+            <URL value="@../../style/change_menu_button.css"/>
+        </stylesheets>
+        <Button fx:id="continueButton"
+                graphicTextGap="18"
+                alignment="CENTER_RIGHT"
+                contentDisplay="RIGHT"
+                visible="false">
+            <graphic>
+                <ImageView fitHeight="32" preserveRatio="true" fx:id="continueButtonView">
+                    <Image url="@../../img/arrow_right_small.png"/>
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+</AnchorPane>

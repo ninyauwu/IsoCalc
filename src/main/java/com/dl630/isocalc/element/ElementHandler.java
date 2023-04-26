@@ -2,8 +2,7 @@ package com.dl630.isocalc.element;
 
 import com.dl630.isocalc.Main;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,13 +12,14 @@ import java.util.Scanner;
 public class ElementHandler {
     private static Element[] allElements;
     private static Map<Element, ArrayList<Integer>> isotopeMap;
-    private static Map<Element, ArrayList<Integer>> savedIsotopeMap;
 
+    // Maps isotope numbers to respective elements, but does not include empty element keys with no isotopes
     public static Map<Element, ArrayList<Integer>> getAllIsotopes() {
         if (isotopeMap != null) { return isotopeMap; }
 
         isotopeMap = new HashMap<>();
-        File isotopeList = new File(Main.RESOURCE_ROOT_COMPLETE + "core/targets.txt");
+        InputStream isotopeList = ElementHandler.class.getResourceAsStream(Main.RESOURCE_ROOT + "core/targets.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(isotopeList));
         try {
             // Try to read the target list file
             Scanner scanner = new Scanner(isotopeList);
@@ -41,46 +41,10 @@ public class ElementHandler {
                     isotopeMap.put(e, lineIsotopes);
                 }
             }
-        } catch(FileNotFoundException e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
         return isotopeMap;
-    }
-
-    public static void addSelectedIsotope(Element element, Integer isotope) {
-        if (savedIsotopeMap == null) { savedIsotopeMap = new HashMap<>(); }
-
-        for (Element e : savedIsotopeMap.keySet()) {
-            if (element == e) {
-                savedIsotopeMap.get(e).add(isotope);
-                return;
-            }
-        }
-
-        // Add new map entry if map doesn't contain element
-        ArrayList<Integer> isotopeList = new ArrayList<>();
-        isotopeList.add(isotope);
-        savedIsotopeMap.put(element, isotopeList);
-    }
-
-    public static void removeSelectedIsotope(Element element, Integer isotope) {
-        for (Element selectedElement : getSelectedIsotopes().keySet()) {
-            if (selectedElement.equals(element)) {
-                for (Integer selectedIsotope : getSelectedIsotopes().get(selectedElement)) {
-                    if (selectedIsotope.equals(isotope)) {
-                        if (savedIsotopeMap.get(selectedElement).size() == 1) {
-                            savedIsotopeMap.remove(selectedElement);
-                        } else {
-                            savedIsotopeMap.get(element).remove(selectedIsotope);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public static Map<Element, ArrayList<Integer>> getSelectedIsotopes() {
-        return savedIsotopeMap;
     }
 
     public static Element getElementByName(String name) {
@@ -521,7 +485,7 @@ public class ElementHandler {
                 case 83 -> {
                     returnName = "Po";
                     returnFullName = "Polonium";
-                    returnType = Element.ElementType.NONMETAL;
+                    returnType = Element.ElementType.METALLOID;
                 }
                 case 84 -> {
                     returnName = "At";

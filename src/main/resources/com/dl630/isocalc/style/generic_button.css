@@ -1,0 +1,20 @@
+.button {
+  -fx-background-color: #FFFFFF;
+  -fx-background-radius: 6;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.1, 2, 2);
+}
+
+.button:hover {
+  -fx-background-color: #DDDDDD;
+  -fx-background-radius: 6;
+  -fx-scale-x: 1.1;
+  -fx-scale-y: 1.1;
+  -fx-scale-z: 1.1;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.1, 2, 2);
+}
+
+.button:pressed {
+  -fx-background-color: #BBBBBB;
+  -fx-background-radius: 6;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.0), 10, 0.1, 2, 2);
+}

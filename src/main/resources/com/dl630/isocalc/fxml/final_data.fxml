@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="root">
+    <stylesheets>
+        <URL value="@../style/final_data.css"/>
+    </stylesheets>
+    <BorderPane fx:id="borderPane" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+        <top>
+            <fx:include source="component/top_button_pane.fxml" fx:id="topButtonPane"/>
+        </top>
+        <center>
+            <HBox alignment="CENTER">
+                <AnchorPane fx:id="alignmentBox">
+                    <VBox fx:id="contentVBox" styleClass="content-box" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                        <VBox>
+                            <Label text="Irradiation Time:" styleClass="title-label"/>
+                            <Separator/>
+                        </VBox>
+                        <HBox fx:id="timeFieldContainer" alignment="CENTER_LEFT" spacing="6.0" styleClass="field-container">
+                            <TextField fx:id="timeField"/>
+                            <Label text="s"/>
+                        </HBox>
+                        <HBox fx:id="waitTimeFieldContainer" alignment="CENTER_LEFT" spacing="6.0" styleClass="field-container">
+                            <TextField fx:id="waitTimeField"/>
+                            <Label text="s"/>
+                        </HBox>
+                        <VBox style="-fx-padding: 6 0 0 0;">
+                            <Label text="Multiple Irradiation Cycles (Optional):" styleClass="title-label"/>
+                            <Separator/>
+                        </VBox>
+                        <HBox fx:id="cycleCountFieldContainer" alignment="CENTER_LEFT" spacing="6.0" styleClass="field-container">
+                            <TextField fx:id="cycleCountField"/>
+                        </HBox>
+                        <VBox style="-fx-padding: 6 0 0 0;">
+                            <Label text="Radiation Shielding (Optional):" styleClass="title-label"/>
+                            <Separator/>
+                        </VBox>
+                        <Pane prefHeight="24"/>
+                        <HBox fx:id="calcBox" alignment="CENTER">
+                            <stylesheets>
+                                <URL value="@../style/generic_button.css"/>
+                                <URL value="@../style/calc_button.css"/>
+                            </stylesheets>
+                            <Button fx:id="calcButton" text="Calculate" style="fx-background-radius: 36;"/>
+                        </HBox>
+                    </VBox>
+                </AnchorPane>
+            </HBox>
+        </center>
+    </BorderPane>
+</AnchorPane>

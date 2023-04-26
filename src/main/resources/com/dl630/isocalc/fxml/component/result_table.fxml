@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="root"
+            style="-fx-padding: 0 0 0 0;">
+    <HBox fx:id="tableBox" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" spacing="24.0">
+        <TableView fx:id="tableView">
+            <columns>
+                <TableColumn fx:id="columnTarget"
+                             text="Target"/>
+                <TableColumn fx:id="columnProduct"
+                             text="Product"/>
+                <TableColumn fx:id="columnHalfLife"
+                             text="Half Life"/>
+                <TableColumn fx:id="columnH10_1m"
+                             text="H10 at 1m"/>
+                <TableColumn fx:id="columnH07"
+                             text="H07"/>
+                <TableColumn fx:id="columnH10_shielded_1m"
+                             text="H10 Shielded at 1m"/>
+                <TableColumn fx:id="columnH10_containerSurface"
+                             text="H10 at Container Surface"/>
+            </columns>
+        </TableView>
+        <VBox>
+            <Button fx:id="exportButton" text="Export"/>
+        </VBox>
+    </HBox>
+</AnchorPane>

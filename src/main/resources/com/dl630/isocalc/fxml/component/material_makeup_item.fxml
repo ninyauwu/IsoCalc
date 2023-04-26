@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="root"
+            stylesheets="@../../style/radiation_setting_item.css"
+            styleClass="anchorpane"
+>
+    <HBox fx:id="titleBox" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" alignment="CENTER_LEFT" spacing="6.0">
+        <Label fx:id="titleLabel"/>
+        <Button fx:id="renameButton" stylesheets="@../../style/pencil_button.css"/>
+    </HBox>
+    <HBox fx:id="rightBox" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" alignment="CENTER_RIGHT" spacing="12.0">
+        <HBox fx:id="valuePane" alignment="CENTER_RIGHT" styleClass="flux" spacing="12.0">
+            <GridPane fx:id="isotopePane" GridPane.rowIndex="0" GridPane.columnIndex="0" alignment="TOP_RIGHT" hgap="6.0" vgap="6.0" style="-fx-margin: 0 0 0 12;"/>
+            <Label fx:id="totalMassLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        </HBox>
+        <HBox fx:id="buttonBox" spacing="6.0" alignment="CENTER_RIGHT">
+            <Button fx:id="editButton" text="edit"/>
+            <Button fx:id="removeButton" stylesheets="@../../style/x_button.css">
+                <graphic>
+                    <ImageView fitWidth="36" fitHeight="36">
+                        <Image url="@../../img/borrowed/cross-small_white.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+    </HBox>
+</AnchorPane>

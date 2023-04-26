@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.TextAlignment;
 
+import java.util.Objects;
+
 public class ButtonFactory {
     public static Button createImageButton(String title, String imageLocation) {
         Button button = new Button(title);
@@ -19,7 +21,9 @@ public class ButtonFactory {
         view.setFitHeight(32);
         view.setPreserveRatio(true);
         button.setGraphic(view);
-        button.getStylesheets().add(ButtonFactory.class.getResource(Main.RESOURCE_ROOT + "style/return_button.css").toExternalForm());
+        button.getStylesheets().add(Objects.requireNonNull(
+                ButtonFactory.class.getResource(Main.RESOURCE_ROOT + "style/return_button.css"))
+                .toExternalForm());
         button.setOnMouseEntered(e -> {
             ColorAdjust hoverAdjust = new ColorAdjust();
             hoverAdjust.setBrightness(0.35);
@@ -50,5 +54,21 @@ public class ButtonFactory {
         continueButton.setGraphicTextGap(18);
         continueButton.setOnAction(event);
         return continueButton;
+    }
+
+    public static Button createXButton(EventHandler<ActionEvent> xButtonEvent, double insets) {
+        Button xButton = new Button();
+        xButton.setStyle(".button .text { -fx-font-size: 48; -fx-font-weight:bold; -fx-padding: 0 0 0 0;}");
+        xButton.getStylesheets().add(Main.RESOURCE_ROOT + "style/x_button.css");
+        xButton.setPrefSize(50 - (insets), 50 - insets);
+        xButton.setOnAction(xButtonEvent);
+
+        Image crossImage = new Image(Main.RESOURCE_ROOT + "img/borrowed/cross-small_white.png");
+        ImageView xButtonView = new ImageView(crossImage);
+        xButtonView.setFitHeight(36.0);
+        xButtonView.setFitWidth(36.0);
+        xButton.setGraphic(xButtonView);
+
+        return xButton;
     }
 }

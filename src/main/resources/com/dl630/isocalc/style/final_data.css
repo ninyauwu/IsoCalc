@@ -1,0 +1,16 @@
+.field-container {
+    -fx-pref-width: 100%;
+}
+
+.content-box {
+    -fx-spacing: 6px;
+
+    -fx-font-size: 16px;
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.1, 2, 2);
+}
+
+.title-label {
+    -fx-font-size: 18px;
+}

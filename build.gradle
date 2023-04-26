@@ -1,6 +1,8 @@
 plugins {
+    id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
 repositories {
@@ -8,12 +10,47 @@ repositories {
 }
 
 dependencies {
-    implementation files('libs/scenicview.jar')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+
+    implementation files('lib/gson-2.9.0.jar')
+    implementation files('lib/javafx.base.jar')
+    implementation files('lib/javafx.controls.jar')
+    implementation files('lib/javafx.fxml.jar')
+    implementation files('lib/javafx.web.jar')
+}
+
+application {
+    // Set the main class for the application
+    mainClass = 'com.dl630.isocalc.Main'
+}
+mainClassName = 'com.dl630.isocalc.Main'
+
+
+jar {
+    // Set the manifest for the JAR file
+    manifest {
+        attributes 'Main-Class': 'com.dl630.isocalc.Main'
+    }
+}
+
+shadowJar {
+    mergeServiceFiles()
+    dependencies {
+        include(dependency("com.google.code.gson:gson"))
+//        include(dependency('org.openjfx:javafx-controls:17'))
+//        include(dependency('org.openjfx:javafx-fxml:17'))
+//        include(dependency('org.openjfx:javafx-web:17'))
+//        include(dependency('org.openjfx:javafx-base:17'))
+    }
+}
+
+test {
+    useJUnitPlatform()
 }
 
 javafx {
-    version = "17.0.1"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    // ...
+    version = "19.0.2.1"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.web' ]
 }
-
-mainClassName = 'com.dl630.isocalc.Main'

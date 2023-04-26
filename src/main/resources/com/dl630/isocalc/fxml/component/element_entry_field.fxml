@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="root"
+      alignment="CENTER_LEFT">
+    <Label fx:id="titleLabel"/>
+    <HBox fx:id="textBox" styleClass="entry-field">
+        <TextField fx:id="textField"/>
+        <Label fx:id="unitLabel"/>
+    </HBox>
+</VBox>

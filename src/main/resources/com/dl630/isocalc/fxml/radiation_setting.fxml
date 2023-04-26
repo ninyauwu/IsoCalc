@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="root">
+    <VBox AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" alignment="CENTER" fx:id="contentVBox" styleClass="content-box" spacing="24.0">
+        <stylesheets>
+            <URL value="@../style/radiation_setting.css"/>
+        </stylesheets>
+        <HBox alignment="CENTER">
+            <TextField fx:id="titleField" styleClass="title"/>
+        </HBox>
+        <GridPane alignment="CENTER_LEFT" vgap="24.0">
+            <Label fx:id="thermalFluxLabel" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="field-label"/>
+            <TextField fx:id="thermalFluxField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <HBox fx:id="thermalFluxUnit" GridPane.columnIndex="2" GridPane.rowIndex="0" alignment="CENTER_LEFT"/>
+
+            <Label fx:id="epithermalFluxLabel" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="field-label"/>
+            <TextField fx:id="epithermalFluxField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <HBox fx:id="epithermalFluxUnit" GridPane.columnIndex="2" GridPane.rowIndex="1" alignment="CENTER_LEFT"/>
+
+            <Label fx:id="fastFluxLabel" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="field-label"/>
+            <TextField fx:id="fastFluxField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <HBox fx:id="fastFluxUnit" GridPane.columnIndex="2" GridPane.rowIndex="2" alignment="CENTER_LEFT"/>
+
+            <Label fx:id="alphaLabel" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="field-label"/>
+            <TextField fx:id="alphaField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </GridPane>
+        <Button fx:id="saveButton"/>
+    </VBox>
+</AnchorPane>
