@@ -1,0 +1,7 @@
+  target,  product,  Activity (Bq), halflife, h10 (dosistempo in microsievert/h) at 1 m,       h07, h10 shielded at 1 m, h10 at container surface
+AFTER IRRAD
+   Co-59,    Co-60, 2.12E+007, 5.2711 y,  6.48E+000, 2.12E+004,           3.14E+000,                1.26E+001
+   Co-59,   Co-60m, 8.95E+011, 10.466 m,  3.67E+002, 1.79E+007,           1.83E+002,                7.32E+002
+AFTER DECAY
+   Co-59,    Co-60, 2.41E+007, 5.2711 y,  7.37E+000, 2.41E+004,           3.57E+000,                1.43E+001
+   Co-59,   Co-60m, 1.23E+011, 10.466 m,  5.03E+001, 2.45E+006,           2.51E+001,                1.00E+002
