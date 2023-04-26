@@ -52,8 +52,8 @@ public class PeriodicPickerController extends SceneController implements Initial
                 button.setLayoutY(48 + (8 * 56));
             } else {
                 button.setPrefSize(50, 50);
-                button.setLayoutX(56.0 * spacing + 20.0 - ((spacing / 18.0) * 56.0 * 18.0));
-                button.setLayoutY(20.0 + (spacing / 18.0) * 56.0);
+                button.setLayoutX(56 * spacing + 20 - ((float)(spacing / 18) * 56 * 18));
+                button.setLayoutY(20 + (float)(spacing / 18) * 56);
             }
 
             // Determine if an element should be clickable
